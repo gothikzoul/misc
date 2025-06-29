@@ -129,7 +129,7 @@ time = 1
 [command]
 name = "hiensrk"
 command = ~F,D,B, z
-time = 25
+time = 28
 
 [command]
 name = "hiensrk"
@@ -144,7 +144,7 @@ time = 21
 [command]
 name = "ranbu"
 command = ~F,D,B, b
-time = 25
+time = 28
 
 [command]
 name = "haohsk"
@@ -154,7 +154,7 @@ time = 21
 [command]
 name = "haohsk"
 command = ~F,D,B, y
-time = 25
+time = 28
 
 ;-| Special Motions |------------------------------------------------------
 
@@ -171,7 +171,7 @@ time = 19
 [command]
 name = "ryuujin"
 command = ~D,F, b
-time = 20
+time = 19
 
 [command]
 name = "hiens"
@@ -181,7 +181,7 @@ time = 19
 [command]
 name = "hiens"
 command = ~D,F,b
-time = 20
+time = 15
 
 [command]
 name = "ryuugekikentwot"
@@ -201,7 +201,7 @@ time = 19
 [command]
 name = "ryuugekiken"
 command = ~D,F,x
-time = 20
+time = 19
 
 [command]
 name = "ryuuga"
@@ -216,12 +216,12 @@ time = 16
 [command]
 name = "exxxx"
 command = ~F,D,F,z
-time = 25
+time = 19
 
 [command]
 name = "ryuuga"
 command = ~F,D,F,y
-time = 25
+time = 19
 
 [command]
 name = "roll f"
@@ -552,6 +552,7 @@ var(59) = 1
 [State -1, light kick back]
 type = ChangeState
 value = 234
+triggerall = var(59) < 1
 triggerall = command = "back_x"
 triggerall = command != "holddown"
 trigger1 = statetype = S
@@ -560,6 +561,7 @@ trigger1 = ctrl
 [State -1, light kick back]
 type = ChangeState
 value = 477
+triggerall = var(59) < 1
 triggerall = command = "roll f"
 trigger1 = statetype = S
 trigger1 = ctrl
@@ -569,6 +571,7 @@ trigger2 = ctrl
 [State -1, light kick back]
 type = ChangeState
 value = 478
+triggerall = var(59) < 1
 triggerall = command = "roll b"
 trigger1 = statetype = S
 trigger1 = ctrl
@@ -578,6 +581,7 @@ trigger2 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16016
+triggerall = var(59) < 1
 triggerall = command = "ryuuga"
 triggerall = statetype != A
 trigger1 = statetype = S
@@ -586,6 +590,7 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16021
+triggerall = var(59) < 1
 triggerall = numproj = 0
 triggerall = command = "ryuugekiken"
 triggerall = statetype != A
@@ -595,6 +600,7 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16030
+triggerall = var(59) < 1
 triggerall = command = "hiens"
 triggerall = statetype != A
 trigger1 = statetype = S
@@ -603,6 +609,7 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16044
+triggerall = var(59) < 1
 triggerall = command = "ryuujin"
 trigger1 = statetype = A
 trigger1 = ctrl
@@ -610,6 +617,7 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16051
+triggerall = var(59) < 1
 triggerall = statetype != A
 triggerall = command = "genei"
 trigger1 = statetype = S
@@ -618,8 +626,9 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16053
-triggerall = power >= 1500
+triggerall = var(59) < 1
 triggerall = numproj = 0
+triggerall = power >= 1500
 triggerall = statetype != A
 triggerall = command = "haohsk"
 triggerall = p2bodydist Y > -200
@@ -629,6 +638,7 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16061
+triggerall = var(59) < 1
 triggerall = power >= 2000
 triggerall = statetype != A
 triggerall = command = "ranbu"
@@ -639,6 +649,7 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16070
+triggerall = var(59) < 1
 triggerall = power >= 4000
 triggerall = statetype != A
 triggerall = command = "hiensrk"
@@ -649,6 +660,7 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16202
+triggerall = var(59) < 1
 triggerall = power >= 1000
 triggerall = statetype != A
 triggerall = command = "exxxx"
@@ -658,17 +670,222 @@ trigger1 = ctrl
 [state -1, changestate]
 type = ChangeState
 value = 16420
+triggerall = var(59) < 1
 triggerall = numproj = 0
 triggerall = command = "ryuugekikentwot"
 triggerall = statetype != A
 trigger1 = statetype = S
 trigger1 = ctrl
 
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = movetype!= A
+TriggerAll = statetype != A
+triggerall = statetype != C
+triggerall = GameTime%14 = 5
+triggerall = (ctrl)
+triggerall = p2stateno != [5030,5300]
+triggerall = p2movetype != A
+trigger1 = (enemy, numproj >= 1) && (p2bodydist X > 149)
+value = 477
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = movetype!= A
+TriggerAll = statetype != A
+triggerall = statetype != C
+triggerall = GameTime%14 = 5
+triggerall = (ctrl)
+triggerall = p2stateno != [5030,5300]
+triggerall = p2movetype = A
+trigger1 = (enemy, numproj >= 1) && (p2bodydist X > 149)
+value = 477
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = movetype!= A
+TriggerAll = statetype != A
+triggerall = statetype != C
+triggerall = GameTime%14 = 5
+triggerall = (ctrl)
+triggerall = p2stateno != [5030,5300]
+triggerall = p2movetype != A
+trigger1 = (enemy, numhelper >= 1) && (p2bodydist X > 149)
+value = 477
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = movetype!= A
+TriggerAll = statetype != A
+triggerall = statetype != C
+triggerall = GameTime%14 = 5
+triggerall = (ctrl)
+triggerall = p2stateno != [5030,5300]
+triggerall = p2movetype = A
+trigger1 = (enemy, numhelper >= 1) && (p2bodydist X > 149)
+value = 477
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = movetype!= A
+TriggerAll = statetype != S
+triggerall = statetype != A
+triggerall = (ctrl)
+triggerall = p2bodydist X > 149
+triggerall = p2stateno != [5030,5300]
+triggerall = p2movetype != A
+trigger1 = enemy, numproj >= 1
+trigger2 = ctrl
+value = 477
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = movetype!= A
+TriggerAll = statetype != S
+triggerall = statetype != A
+triggerall = (ctrl)
+triggerall = p2bodydist X > 149
+triggerall = p2stateno != [5030,5300]
+triggerall = p2movetype = A
+trigger1 = enemy, numproj >= 1
+trigger2 = ctrl
+value = 477
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = (Ctrl) && (Statetype = S) && (p2bodydist X = [111,200])
+triggerall = (ctrl) && (numproj = 0)
+triggerall = p2statetype != A
+triggerall = p2stateno != [5030,5120]
+triggerall = Enemy, numproj < 1
+triggerall = Enemy, numhelper = 0
+triggerall = random = [10,100]
+trigger1 = (ctrl) && (random = [95,100])
+trigger1 = p2movetype = A
+trigger2 = (numproj = 0)
+trigger3 = statetype != A
+trigger4 = (random = [95,100]) && (stateno = 221044444)
+trigger5 = (random = [100,100]) && (stateno = 220855555)
+value = 16030
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = (Ctrl) && (Statetype = S) && (p2bodydist X = [200,888])
+triggerall = (ctrl) && (numproj = 0)
+triggerall = p2statetype != A
+triggerall = p2stateno != [5030,5120]
+triggerall = Enemy, numproj < 2
+triggerall = Enemy, numhelper < 2
+triggerall = random = [10,100]
+trigger1 = (ctrl) && (random = [95,100])
+trigger1 = p2movetype = A
+trigger2 = (numproj = 0)
+trigger3 = statetype != A
+trigger4 = (random = [95,100]) && (stateno = 221044444)
+trigger5 = (random = [100,100]) && (stateno = 220855555)
+value = 16021
+
+[State -1, changestate]
+type = ChangeState
+trigger1 = var(59) <= 0
+trigger1 = stateno = 221044444
+value = 0
+ctrl = 1
+
+[State -1, changestate]
+type = ChangeState
+trigger1 = var(59) <= 0
+trigger1 = stateno = 220855555
+value = 0
+ctrl = 1
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = p2stateno = [5200,5210]
+triggerall = p2statetype != A
+triggerall = (ctrl)
+triggerall = statetype != A
+trigger1 = p2movetype != A
+trigger1 = (P2bodydist X <= 59)
+trigger1 = backedgebodydist > 40
+value = 105
+
+[state -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = (p2stateno = [5070,5110])
+triggerall = p2statetype != A
+triggerall = (ctrl)
+triggerall = statetype != A
+trigger1 = p2movetype != A
+trigger1 = (P2bodydist X <= 59)
+trigger1 = backedgebodydist > 40
+value = 105
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = p2stateno = [5150,5170]
+triggerall = p2statetype != A
+triggerall = (ctrl)
+triggerall = statetype != A
+trigger1 = p2movetype != A
+trigger1 = (P2bodydist X <= 59)
+trigger1 = backedgebodydist > 40
+value = 105
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = p2stateno = 5120
+triggerall = p2statetype != A
+triggerall = (ctrl)
+triggerall = statetype != A
+trigger1 = p2movetype != A
+trigger1 = (P2bodydist X <= 59)
+trigger1 = backedgebodydist > 40
+value = 105
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = (Ctrl) && (Statetype = S) && (statetype != A)
+triggerall = p2movetype != A
+triggerall = p2stateno = [5030,5090]
+triggerall = (P2bodydist X = [105,809]) && (p2stateno = [5030,5090])
+triggerall = statetype != C
+triggerall = statetype != A
+trigger1 = (P2bodydist X = [105,809]) && (p2stateno = [5030,5090])
+value = 221044444
+
+[State -1, changestate]
+type = changestate
+triggerall = var(59)>=1
+triggerall = (Ctrl) && (Statetype = S) && (statetype != A)
+triggerall = p2movetype != A
+triggerall = p2stateno != [5030,5090]
+triggerall = statetype != C
+triggerall = statetype != A
+triggerall = p2stateno != [5110,5120]
+trigger1 = (ctrl) && (P2bodydist X = [55,809]) && (p2movetype = H)
+trigger2 = (ctrl) && (p2bodydist X = [55,809]) && (p2movetype != A)
+value = 220855555
+
 ;---------------------------------------------------------------------------
 ; Run Fwd
 [State -1, Run Fwd]
 type = ChangeState
 value = 100
+triggerall = var(59) < 1
 triggerall = command = "FF"
 trigger1 =  statetype = s
 trigger1 = ctrl
@@ -690,6 +907,7 @@ trigger1 = var(9)<=0
 [State -1, Throw]
 type = ChangeState
 value = 800
+triggerall = var(59) < 1
 triggerall = command = "y"
 triggerall = statetype = S
 triggerall = ctrl
@@ -703,6 +921,7 @@ trigger1 = (p2statetype = S) || (p2statetype = C)
 [State -1, Taunt]
 type = ChangeState
 value = 195
+triggerall = var(59) < 1
 triggerall = command = "s"
 triggerall = statetype != C
 trigger1 = statetype != A
@@ -714,6 +933,7 @@ trigger1 = ctrl
 [State -1, Stand Light Punch]
 type = ChangeState
 value = 200
+triggerall = var(59) < 1
 triggerall = command = "x"
 triggerall = command != "holddown"
 TriggerAll = statetype != A
@@ -726,6 +946,7 @@ trigger1 = ctrl
 [State -1, Stand Medium Punch]
 type = ChangeState
 value = 210
+triggerall = var(59) < 1
 triggerall = command = "y"
 triggerall = command != "holddown"
 TriggerAll = statetype != A
@@ -740,6 +961,7 @@ trigger2 = movecontact
 [State -1, Stand Strong Punch]
 type = ChangeState
 value = 220
+triggerall = var(59) < 1
 triggerall = command = "z"
 triggerall = command != "holddown"
 TriggerAll = statetype != A
@@ -753,6 +975,7 @@ trigger2 = movecontact
 [State -1, Stand Light Kick]
 type = ChangeState
 value = 230
+triggerall = var(59) < 1
 triggerall = command = "a"
 triggerall = command != "holddown"
 TriggerAll = statetype != A
@@ -764,6 +987,7 @@ trigger1 = ctrl
 [State -1, Standing Medium Kick]
 type = ChangeState
 value = 240
+triggerall = var(59) < 1
 triggerall = command = "b"
 triggerall = command != "holddown"
 TriggerAll = statetype != A
@@ -775,6 +999,7 @@ trigger1 = ctrl
 [State -1, Crouching Light Punch]
 type = ChangeState
 value = 400
+triggerall = var(59) < 1
 triggerall = command = "x"
 triggerall = command = "holddown"
 TriggerAll = statetype != A
@@ -787,6 +1012,7 @@ trigger1 = ctrl
 [State -1, Crouching Medium Punch]
 type = ChangeState
 value = 410
+triggerall = var(59) < 1
 triggerall = command = "y"
 triggerall = command = "holddown"
 TriggerAll = statetype != A
@@ -798,6 +1024,7 @@ trigger1 = ctrl
 [State -1, Crouching Light Kick]
 type = ChangeState
 value = 430
+triggerall = var(59) < 1
 triggerall = command = "a"
 triggerall = command = "holddown"
 TriggerAll = statetype != A
@@ -812,6 +1039,7 @@ trigger2 = movecontact
 [State -1, Crouching Medium Kick]
 type = ChangeState
 value = 440
+triggerall = var(59) < 1
 triggerall = command = "b"
 triggerall = command = "holddown"
 TriggerAll = statetype != A
@@ -825,6 +1053,7 @@ trigger2 = movecontact
 [State -1, Jump Light Punch]
 type = ChangeState
 value = 600
+triggerall = var(59) < 1
 triggerall = command = "x"
 trigger1 = statetype = A
 trigger1 = ctrl
@@ -834,6 +1063,7 @@ trigger1 = ctrl
 [State -1, Jump Medium Punch]
 type = ChangeState
 value = 610
+triggerall = var(59) < 1
 triggerall = command = "y"
 trigger1 = statetype = A
 trigger1 = ctrl
@@ -843,6 +1073,7 @@ trigger1 = ctrl
 [State -1, Jump Strong Punch]
 type = ChangeState
 value = 620
+triggerall = var(59) < 1
 triggerall = command = "z"
 trigger1 = statetype = A
 trigger1 = ctrl
@@ -852,6 +1083,7 @@ trigger1 = ctrl
 [State -1, Jump Light Kick]
 type = ChangeState
 value = 630
+triggerall = var(59) < 1
 triggerall = command = "a"
 trigger1 = statetype = A
 trigger1 = ctrl
@@ -861,6 +1093,7 @@ trigger1 = ctrl
 [State -1, Jump Medium Kick]
 type = ChangeState
 value = 640
+triggerall = var(59) < 1
 triggerall = command = "b"
 trigger1 = statetype = A
 trigger1 = ctrl
